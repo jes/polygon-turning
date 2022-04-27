@@ -14,7 +14,8 @@ var fix_camera_to_stock = true;
 var theta = 0; // radians
 
 function setup() {
-  createCanvas(600, 400);
+  var canvas = createCanvas(600, 400);
+  canvas.parent('canvas');
 }
 
 function draw() {
