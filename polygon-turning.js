@@ -1,7 +1,7 @@
 // setup:
 var num_inserts = 3;
 var gear_ratio = 2;
-var rpm = 20;
+var rpm = 10;
 var cutter_radius = 45; // mm
 var stock_radius = 20; // mm
 var centre_separation = 60; // mm
@@ -50,15 +50,34 @@ function draw() {
 function draw_stock() {
   if (fix_camera_to_stock) {
     noFill();
+    stroke(150);
     circle(0,0,centre_separation*2);
     fill(255);
+    stroke(0);
   }
+
+  rotate(45*PI/180);
+
   circle(0,0,stock_radius * 2);
   line(0,0,0,stock_radius);
   circle(0,0,5);
-  rotate(60*180/PI);
+
+  if (fix_camera_to_stock) {
+    noFill();
+    stroke(150);
+    rotate(60*PI/180);
+    ellipse(0,0,210,28);
+    rotate(60*PI/180);
+    ellipse(0,0,210,28);
+    rotate(60*PI/180);
+    ellipse(0,0,210,28);
+    rotate(-180*PI/180);
+    fill(255);
+    stroke(0);
+  }
+
   polygon(0,0,centre_separation-cutter_radius+1,gear_ratio*num_inserts);
-  rotate(-60*180/PI);
+  rotate(-45*PI/180);
 }
 
 function draw_cutter() {
