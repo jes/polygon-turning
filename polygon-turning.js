@@ -28,7 +28,7 @@ function draw() {
 
     var radians_per_min = rpm * TWO_PI;
     var radians_per_ms = radians_per_min / 60000;
-    theta += radians_per_ms * deltaTime;
+    theta -= radians_per_ms * deltaTime;
     while (theta > TWO_PI) theta -= TWO_PI;
 
     var stock_centre = stock_radius + 60;
