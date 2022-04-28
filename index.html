@@ -4,18 +4,36 @@
 <title>Polygon Turning Simulation</title>
 </head>
 <body>
+<div style="float:left; border-right: solid 1px black; margin-right: 10px">
 <h1>Polygon Turning Simulation</h1>
 <div id="canvas"></div>
-<!--<p>Info here: what is polygon turning?</p>
-<p>Form here: all the "setup" parameters</p>-->
 <button id="reference">Toggle reference frame</button>
 <button id="toolpaths">Toggle toolpaths</button>
 <br>
-Number of cutting tips: <input id="numinserts" type="number" min="0" max="10" value="3">
+Number of cutting tips: <input id="numinserts" type="number" min="0" max="10" value="3" style="width: 50px; margin-top: 8px">
 <br>
 Centre separation: <input id="separation" type="range" min="48" max="63" value="60">
 <br>
-Cutter radius: <input id="cutterradius" type="range" min="20" max="50" value="45">
+Cutter radius: <input id="cutterradius" type="range" min="20" max="50" value="45"><br>
+</div>
+<div style="float:left; max-width:570px">
+<h3>What is polygon turning?</h3>
+<p>Polygon turning (also known as <i>polygonal turning</i>, <i>polygon milling</i> or <i>polygon cutting</i>) is a method of using a rotating cutting tool, with 1 or many cutting
+inserts, geared at 2x the
+rotation speed of the workpiece, to cut an approximation of a polygon
+using a lathe.</p>
+<p>The resulting flat faces have an elliptical geometry, which more
+closely approximates a true flat surface as the ratio of cutting
+tool size to feature size increases.</p>
+<p>The advantage of polygon turning over more conventional milling
+operations is its speed.</p>
+<p>See the video below for a 3D animation.</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ykB6VsFC_cA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<p><i>(No affiliation)</i></p>
+</div>
+<div style="clear:both"></div>
+<hr>
+<i>By <a href="https://incoherency.co.uk/">James Stanley</a>.</i>
 <script src="jquery-3.6.0.min.js"></script>
 <script src="p5.min.js"></script>
 <script src="polygon-turning.js"></script>
