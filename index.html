@@ -10,6 +10,10 @@
 <p>Form here: all the "setup" parameters</p>-->
 <button id="reference">Toggle reference frame</button>
 <button id="toolpaths">Toggle toolpaths</button>
+<br>
+Number of cutting tips: <input id="numinserts" type="number" min="0" max="10" value="3">
+<br>
+Centre separation: <input id="separation" type="range" min="48" max="63" value="60">
 <script src="jquery-3.6.0.min.js"></script>
 <script src="p5.min.js"></script>
 <script src="polygon-turning.js"></script>
@@ -20,6 +24,14 @@ $('#reference').click(function() {
 $('#toolpaths').click(function() {
     show_toolpaths = !show_toolpaths;
 });
+$('#numinserts').change(update);
+$('#separation').change(update);
+$('#separation').mousemove(update);
+function update() {
+    num_inserts = parseInt($('#numinserts').val());
+    centre_separation = parseFloat($('#separation').val());
+}
+update();
 </script>
 </body>
 </html>

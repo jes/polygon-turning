@@ -7,12 +7,16 @@ var stock_radius = 20; // mm
 var centre_separation = 60; // mm
 
 // simulation:
-var px_per_mm = 3;
+var px_per_mm = 2.5;
 var fix_camera_to_stock = false;
 var show_toolpaths = true;
 
 // state:
 var theta = 0; // radians
+
+// bodges:
+var extra_angle = [0,0,45,0,22.5,0,45,0,0,0,0,0,0,0,0];
+var extra_size = [0,0,1.3,1.1,1,1,1,1,1,1,1,1,1,1,1,1];
 
 function setup() {
     var canvas = createCanvas(600, 400);
@@ -27,7 +31,7 @@ function draw() {
     theta += radians_per_ms * deltaTime;
     while (theta > TWO_PI) theta -= TWO_PI;
 
-    var stock_centre = stock_radius + 50;
+    var stock_centre = stock_radius + 60;
     var cutter_centre = stock_centre + centre_separation;
 
     var centre_mm = 200/px_per_mm;
@@ -49,6 +53,10 @@ function draw() {
 }
 
 function draw_stock() {
+    // match rotation of cutter
+    rotate(45*PI/180);
+
+    // circular path of cutting tool centre
     if (fix_camera_to_stock) {
         noFill();
         stroke(150);
@@ -57,30 +65,35 @@ function draw_stock() {
         stroke(0);
     }
 
-    rotate(45*PI/180);
-
+    // circular stock
     circle(0,0,stock_radius * 2);
-    line(0,0,0,stock_radius);
-    circle(0,0,5);
 
-    // ellipses:
-    if (show_toolpaths) {
-        noFill();
-        stroke(150);
-        rotate(60*PI/180);
-        ellipse(0,0,210,28);
-        rotate(60*PI/180);
-        ellipse(0,0,210,28);
-        rotate(60*PI/180);
-        ellipse(0,0,210,28);
-        rotate(-180*PI/180);
-        fill(255);
-        stroke(0);
-    }
+    // toolpaths of cutting inserts
+    if (show_toolpaths) draw_ellipses();
 
-    polygon(0,0,centre_separation-cutter_radius+1,gear_ratio*num_inserts);
+    // resulting polygon
+    rotate(extra_angle[num_inserts]*PI/180);
+    fill(255,200,200);
+    polygon(0,0,extra_size[num_inserts]*(centre_separation-cutter_radius),gear_ratio*num_inserts);
+    fill(255);
+    rotate(-extra_angle[num_inserts]*PI/180);
     rotate(-45*PI/180);
 }
+
+function draw_ellipses() {
+    noFill();
+    stroke(150);
+
+    for (var i = 0; i < num_inserts; i++) {
+        rotate(PI/num_inserts);
+        ellipse(0,0,centre_separation*2+cutter_radius*2,centre_separation*2-2*cutter_radius-1);
+    }
+    if (num_inserts > 0) rotate(PI);
+
+    fill(255);
+    stroke(0);
+}
+
 
 function draw_cutter() {
     for (var i = 0; i < num_inserts; i++) {
