@@ -8,7 +8,7 @@ var centre_separation = 60; // mm
 
 // simulation:
 var px_per_mm = 3;
-var fix_camera_to_stock = true;
+var fix_camera_to_stock = false;
 
 // state:
 var theta = 0; // radians

@@ -8,7 +8,14 @@
 <div id="canvas"></div>
 <!--<p>Info here: what is polygon turning?</p>
 <p>Form here: all the "setup" parameters</p>-->
+<button id="toggle">Toggle reference frame</button>
+<script src="jquery-3.6.0.min.js"></script>
 <script src="p5.min.js"></script>
 <script src="polygon-turning.js"></script>
+<script type="text/javascript">
+$('#toggle').click(function() {
+    fix_camera_to_stock = !fix_camera_to_stock;
+});
+</script>
 </body>
 </html>
