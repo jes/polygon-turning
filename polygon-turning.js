@@ -62,19 +62,18 @@ function draw_stock() {
   line(0,0,0,stock_radius);
   circle(0,0,5);
 
-  if (fix_camera_to_stock) {
-    noFill();
-    stroke(150);
-    rotate(60*PI/180);
-    ellipse(0,0,210,28);
-    rotate(60*PI/180);
-    ellipse(0,0,210,28);
-    rotate(60*PI/180);
-    ellipse(0,0,210,28);
-    rotate(-180*PI/180);
-    fill(255);
-    stroke(0);
-  }
+  // ellipses:
+  noFill();
+  stroke(150);
+  rotate(60*PI/180);
+  ellipse(0,0,210,28);
+  rotate(60*PI/180);
+  ellipse(0,0,210,28);
+  rotate(60*PI/180);
+  ellipse(0,0,210,28);
+  rotate(-180*PI/180);
+  fill(255);
+  stroke(0);
 
   polygon(0,0,centre_separation-cutter_radius+1,gear_ratio*num_inserts);
   rotate(-45*PI/180);
