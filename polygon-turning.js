@@ -56,6 +56,9 @@ function draw_stock() {
   circle(0,0,stock_radius * 2);
   line(0,0,0,stock_radius);
   circle(0,0,5);
+  rotate(60*180/PI);
+  polygon(0,0,centre_separation-cutter_radius+1,gear_ratio*num_inserts);
+  rotate(-60*180/PI);
 }
 
 function draw_cutter() {
@@ -64,4 +67,16 @@ function draw_cutter() {
     rotate(TWO_PI/num_inserts);
   }
   circle(0,0,5);
+}
+
+// https://p5js.org/examples/form-regular-polygon.html
+function polygon(x, y, radius, npoints) {
+  let angle = TWO_PI / npoints;
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += angle) {
+    let sx = x + cos(a) * radius;
+    let sy = y + sin(a) * radius;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
 }
